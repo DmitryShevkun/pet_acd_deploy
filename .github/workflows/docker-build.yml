@@ -1,24 +1,32 @@
-name: Build and Push Docker Image
+name: Build and Push Nginx Page with SHA
 
-#on:
-#  push:
-#    branches: [ main ]
+on:
+  push:
+    branches: [main]
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Replace placeholder with Git SHA
+      run: |
+        mkdir -p html
+        sed "s/{{ COMMIT_SHA }}/${{ github.sha }}/" html/index.html > html/index.tmp.html
+        mv html/index.tmp.html html/index.html
 
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DH_TOKEN }}" | docker login -u "${{ secrets.DH_USER }}" --password-stdin
 
-    - name: Build Docker image with tag
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }} .
-
+    - name: Build Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/nginx-sha:${{ github.sha }} .
 
     - name: Push Docker image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-image:latest
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/nginx-sha:${{ github.sha }}
+
 
