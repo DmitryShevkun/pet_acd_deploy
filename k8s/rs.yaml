@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-sha-rs
+  labels:
+    app: nginx-sha
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-sha
+  template:
+    metadata:
+      labels:
+        app: nginx-sha
+    spec:
+      containers:
+      - name: nginx-sha
+        image: dsheukun/nginx-sha:latest
+        ports:
+        - containerPort: 80
