@@ -29,4 +29,13 @@ jobs:
       run: |
         docker push ${{ secrets.DH_USER }}/nginx-sha:${{ github.sha }}
 
+    - name: Build and push Docker image with multiple tags
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: |
+          ${{ secrets.DH_USER }}/nginx-sha:latest
+          ${{ secrets.DH_USER }}/nginx-sha:${{ github.sha }}
+
 
