@@ -7,7 +7,7 @@ metadata:
 spec:
   destination:
     name: in-cluster
-    namespace: acd-root
+    namespace: argocd
   source:
     path: acd
     repoURL: https://github.com/DmitryShevkun/practice_acd_deploy.git
