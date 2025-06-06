@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-app
+spec:
+  destination:
+    namespace: acd-deploy
+    server: https://kubernetes.default.svc
+  source:
+    path: k8s
+    repoURL: https://github.com/DmitryShevkun/practice_acd_deploy.git
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
