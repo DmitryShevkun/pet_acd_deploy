@@ -1,11 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-app
+  name: acd-app
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: acd-deploy
-    server: https://kubernetes.default.svc
+    name: in-cluster
+    namespace: acd-app
   source:
     path: k8s
     repoURL: https://github.com/DmitryShevkun/practice_acd_deploy.git
