@@ -1,20 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name     : acd-root
-  namespace: acd-deploy-root
+  name: acd-root
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    name     : in-cluster
-    namespace: acd-deploy
+    name: in-cluster
+    namespace: acd-root
   source:
-    path   : "acd"
-    repoURL: "https://github.com/DmitryShevkun/practice_acd_deploy.git"
+    path: acd
+    repoURL: https://github.com/DmitryShevkun/practice_acd_deploy.git
     targetRevision: HEAD
-  project: 'default'
+  sources: []
+  project: default
   syncPolicy:
-    automated:
-      prune   : true
-      selfHeal: true
+    automated: null
