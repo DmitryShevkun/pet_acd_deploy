@@ -9,7 +9,7 @@ spec:
     name: in-cluster
     namespace: acd-app
   source:
-    path: k8s
+    path: 1.manifest/k8s-apps
     repoURL: https://github.com/DmitryShevkun/practice_acd_deploy.git
     targetRevision: HEAD
   sources: []
