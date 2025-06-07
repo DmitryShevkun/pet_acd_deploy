@@ -5,4 +5,4 @@ to run root application
 - - argocd Project
 - - argocd Repo
 - - k8s namespaces
-- kubectl apply -n argocd -f https://raw.githubusercontent.com/DmitryShevkun/practice_acd_deploy/refs/heads/main/acd-root.yaml
+- kubectl apply -n argocd -f https://raw.githubusercontent.com/DmitryShevkun/practice_acd_deploy/refs/heads/main/1.manifest/acd-root.yaml
