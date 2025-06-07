@@ -9,7 +9,7 @@ spec:
     name: in-cluster
     namespace: argocd
   source:
-    path: acd
+    path: 1.manifest/acd-apps
     repoURL: https://github.com/DmitryShevkun/practice_acd_deploy.git
     targetRevision: HEAD
   sources: []
